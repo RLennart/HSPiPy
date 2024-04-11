@@ -13,7 +13,7 @@ def split_grid(grid,inside_limit):
 
 def get_hsp_error(HSP,grid,inside_limit):
     errors = []
-    for solvent, D, P, H, score in grid:
+    for solvent, D, P, H in grid:
         # Calculate the Euclidean distance between (D, P, H) and (HSP[0], HSP[1], HSP[2]).
         distance = (
             4*(D-HSP[0])**2+
@@ -21,9 +21,10 @@ def get_hsp_error(HSP,grid,inside_limit):
             (H-HSP[2])**2)**0.5
         
         # Calculate the Relative Euclidean Distance (RED).
-        RED = distance/HSP[3]
+        #RED = distance/HSP[3]
         
         
+        #if ( (RED <= 1 and score <= inside_limit) or (RED > 1 and score > inside_limit) ):
         if ( (RED <= 1 and score <= inside_limit) or (RED > 1 and score > inside_limit) ):
             errors.append(0)
         else:

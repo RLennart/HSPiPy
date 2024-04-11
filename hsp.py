@@ -50,7 +50,8 @@ class HSP:
         self.grid = pd.read_csv(path)
     def get(self,inside_limit=1):
         if hasattr(self, 'grid'):
-            hsp_grid = self.grid[['Solvent','D','P','H','Score']].to_numpy()
+            #hsp_grid = self.grid[['Solvent','D','P','H','Score']].to_numpy()
+            hsp_grid = self.grid[['Name','D','P','H']].to_numpy()
             hsp,radius,error = get_hsp(hsp_grid,inside_limit)
             inside,outside = split_grid(hsp_grid,inside_limit)
             self.d = hsp[0]
